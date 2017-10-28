@@ -52,7 +52,7 @@ def res_test(encResp):
 		sendMerEmail(mer_name, name, order_id, event_id, amount, mer_email)
 		
 
-	return {'order_id': res['order_id'], 'event_id': res['merchant_param1'], 'order_status': res['order_status']}
+	return {'name': res['billing_name'], 'order_id': res['order_id'], 'event_id': res['merchant_param1'], 'amount': res['mer_amount'], 'order_status': res['order_status']}
 
 def res(encResp):
 	'''
@@ -83,4 +83,4 @@ def res(encResp):
 		sendClientEmail(name, order_id, event_id, amount, email)
 		sendMerEmail(mer_name, name, order_id, event_id, amount, mer_email)
 
-	return {'order_id': res['order_id'], 'event_id': res['merchant_param1'], 'order_status': res['order_status']}
+	return {'name': res['billing_name'], 'order_id': res['order_id'], 'event_id': res['merchant_param1'], 'amount': res['mer_amount'], 'order_status': res['order_status']}

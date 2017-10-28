@@ -40,17 +40,17 @@ def event(eid):
 def ccavResponseHandler():
     data = res_test(request.forms.get('encResp'))
     # data = json.loads(plainText)
-    return data
+    #return data
 
-    # return template('templates/order-status.tpl', data)
+    return template('templates/order-status.tpl', data)
 
 @app.post('/order-status')
 def ccavResponseHandler():
     data = res(request.forms.get('encResp'))
     # data = json.loads(plainText)
-    return data
+    #return data
 
-    # return template('templates/order-status.tpl', data)
+    return template('templates/order-status.tpl', data)
 
 @app.post('/api/pay/test')
 def order_payment():
