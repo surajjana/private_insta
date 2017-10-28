@@ -9,10 +9,12 @@ import pymongo
 from notify import sendClientEmail, sendMerEmail
 
 
-# client = MongoClient('mongodb://su:su@52.37.155.102:27017/kp_events')
+client = MongoClient('mongodb://bae:bae@34.228.79.24:27017/bae_chat')
 # # client = MongoClient()
-# db = client.kp_events
+db = client.bae_chat
 
+mer_name = 'UVCE'
+mer_email = 'surajjana2@gmail.com'
 
 def res_test(encResp):
 	'''
@@ -24,8 +26,7 @@ def res_test(encResp):
 
 	data = decResp.split('&')
 
-	mer_name = 'UVCE'
-	mer_email = 'inspiron2k17@campusuvce.in'
+	
 
 	res = {}
 
@@ -51,6 +52,7 @@ def res_test(encResp):
 		sendClientEmail(name, order_id, event_id, amount, email)
 		sendMerEmail(mer_name, name, order_id, event_id, amount, mer_email)
 		
+	cur = db.kp_uvce_tickets.insert(res)
 
 	return {'name': res['billing_name'], 'order_id': res['order_id'], 'event_id': res['merchant_param1'], 'amount': res['mer_amount'], 'order_status': res['order_status']}
 
@@ -61,9 +63,6 @@ def res(encResp):
 	workingKey = '7D9D1B56365DC282F2F83E8B1C9D4A04'
 	# workingKey = 'DEDE391379CF9113C0DE2ADF7DA7C235'
 	decResp = decrypt(encResp,workingKey)
-
-	mer_name = 'UVCE'
-	mer_email = 'surajjana2@gmail.com'
 
 	data = decResp.split('&')
 
@@ -82,5 +81,7 @@ def res(encResp):
 		
 		sendClientEmail(name, order_id, event_id, amount, email)
 		sendMerEmail(mer_name, name, order_id, event_id, amount, mer_email)
+
+	cur = db.kp_uvce_tickets.insert(res)
 
 	return {'name': res['billing_name'], 'order_id': res['order_id'], 'event_id': res['merchant_param1'], 'amount': res['mer_amount'], 'order_status': res['order_status']}
