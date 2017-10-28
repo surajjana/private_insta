@@ -52,7 +52,7 @@ def ccavResponseHandler():
 
     # return template('templates/order-status.tpl', data)
 
-@app.get('/api/pay/test')
+@app.post('/api/pay/test')
 def order_payment():
 
 	accessCode = 'AVPU00EB89BP61UPPB'
@@ -67,14 +67,18 @@ def order_payment():
 	p_cancel_url = 'https://www.krispypapad.com/order-status-test'
 	p_language = 'EN'
 
-	p_order_id = 'O_1'
+	# apikey = request.forms.get('apikey')
 
-	p_amount = '1'
-	p_billing_name = 'Test'
-	p_billing_tel = '9876543210'
-	p_billing_email = 'test@test.com'
+	p_order_id = request.forms.get('order_id')
 
-	merchant_data = 'merchant_id='+p_merchant_id+'&'+'order_id='+p_order_id + '&' + "currency=" + p_currency + '&' + 'amount=' + p_amount+'&'+'redirect_url='+p_redirect_url+'&'+'cancel_url='+p_cancel_url+'&'+'language='+p_language+'&'+'billing_name='+p_billing_name+'&'+'billing_tel='+p_billing_tel+'&'+'billing_email='+p_billing_email+'&'
+	p_amount = request.forms.get('amount')
+	p_billing_name = request.forms.get('name')
+	p_billing_tel = request.forms.get('mobile')
+	p_billing_email = request.forms.get('email')
+
+	event_id = request.forms.get('event_id')
+
+	merchant_data = 'merchant_id='+p_merchant_id+'&'+'order_id='+p_order_id + '&' + "currency=" + p_currency + '&' + 'amount=' + p_amount+'&'+'redirect_url='+p_redirect_url+'&'+'cancel_url='+p_cancel_url+'&'+'language='+p_language+'&'+'billing_name='+p_billing_name+'&'+'billing_tel='+p_billing_tel+'&'+'billing_email='+p_billing_email+'&'+'merchant_param1='+event_id+'&'
 		
 	encryption = encrypt(merchant_data,workingKey)
 
@@ -97,7 +101,7 @@ def order_payment():
 			
 	return fin
 
-@app.get('/api/pay')
+@app.post('/api/pay')
 def order_payment():
 
 	# accessCode = 'AVPU00EB89BP61UPPB'
@@ -112,14 +116,18 @@ def order_payment():
 	p_cancel_url = 'https://www.krispypapad.com/order-status'
 	p_language = 'EN'
 
-	p_order_id = 'O_1'
+	# apikey = request.forms.get('apikey')
 
-	p_amount = '1'
-	p_billing_name = 'Test'
-	p_billing_tel = '9876543210'
-	p_billing_email = 'test@test.com'
+	p_order_id = request.forms.get('order_id')
 
-	merchant_data = 'merchant_id='+p_merchant_id+'&'+'order_id='+p_order_id + '&' + "currency=" + p_currency + '&' + 'amount=' + p_amount+'&'+'redirect_url='+p_redirect_url+'&'+'cancel_url='+p_cancel_url+'&'+'language='+p_language+'&'+'billing_name='+p_billing_name+'&'+'billing_tel='+p_billing_tel+'&'+'billing_email='+p_billing_email+'&'
+	p_amount = request.forms.get('amount')
+	p_billing_name = request.forms.get('name')
+	p_billing_tel = request.forms.get('mobile')
+	p_billing_email = request.forms.get('email')
+
+	event_id = request.forms.get('event_id')
+
+	merchant_data = 'merchant_id='+p_merchant_id+'&'+'order_id='+p_order_id + '&' + "currency=" + p_currency + '&' + 'amount=' + p_amount+'&'+'redirect_url='+p_redirect_url+'&'+'cancel_url='+p_cancel_url+'&'+'language='+p_language+'&'+'billing_name='+p_billing_name+'&'+'billing_tel='+p_billing_tel+'&'+'billing_email='+p_billing_email+'&'+'merchant_param1='+event_id+'&'
 		
 	encryption = encrypt(merchant_data,workingKey)
 

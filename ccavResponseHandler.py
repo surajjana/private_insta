@@ -50,7 +50,7 @@ def res_test(encResp):
 		# sendemail(res['billing_name'], order_id, event_name, billing_email)
 		# sendthemail(res['billing_name'], order_id, '1', event_name, event_venue, email_header, billing_email)
 
-	return {'order_id': res['order_id'], 'order_status': res['order_status']}
+	return {'order_id': res['order_id'], 'event_id': res['merchant_param1'], 'order_status': res['order_status']}
 
 def res(encResp):
 	'''
@@ -89,4 +89,4 @@ def res(encResp):
 		# sendemail(res['billing_name'], order_id, event_name, billing_email)
 		# sendthemail(res['billing_name'], order_id, '1', event_name, event_venue, email_header, billing_email)
 
-	return {'order_id': res['order_id'], 'order_status': res['order_status']}
+	return {'order_id': res['order_id'], 'event_id': res['merchant_param1'], 'order_status': res['order_status']}
