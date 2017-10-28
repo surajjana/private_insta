@@ -3,7 +3,7 @@ from pymongo import MongoClient
 from bson.json_util import dumps
 from string import Template
 from ccavutil import encrypt,decrypt
-from ccavResponseHandler import res
+from ccavResponseHandler import res, res_test
 import json
 import pymongo
 import requests
@@ -36,6 +36,14 @@ def event(eid):
 
 	return template('templates/event.tpl', data[int(eid) - 1])
 
+@app.post('/order-status-test')
+def ccavResponseHandler():
+    data = res_test(request.forms.get('encResp'))
+    # data = json.loads(plainText)
+    return data
+
+    # return template('templates/order-status.tpl', data)
+
 @app.post('/order-status')
 def ccavResponseHandler():
     data = res(request.forms.get('encResp'))
@@ -52,6 +60,51 @@ def order_payment():
 
 	# accessCode = 'AVHA69EB15AS94AHSA' 	
 	# workingKey = '7D9D1B56365DC282F2F83E8B1C9D4A04'
+
+	p_merchant_id = '123840'
+	p_currency = 'INR'
+	p_redirect_url = 'https://www.krispypapad.com/order-status-test'
+	p_cancel_url = 'https://www.krispypapad.com/order-status-test'
+	p_language = 'EN'
+
+	p_order_id = 'O_1'
+
+	p_amount = '1'
+	p_billing_name = 'Test'
+	p_billing_tel = '9876543210'
+	p_billing_email = 'test@test.com'
+
+	merchant_data = 'merchant_id='+p_merchant_id+'&'+'order_id='+p_order_id + '&' + "currency=" + p_currency + '&' + 'amount=' + p_amount+'&'+'redirect_url='+p_redirect_url+'&'+'cancel_url='+p_cancel_url+'&'+'language='+p_language+'&'+'billing_name='+p_billing_name+'&'+'billing_tel='+p_billing_tel+'&'+'billing_email='+p_billing_email+'&'
+		
+	encryption = encrypt(merchant_data,workingKey)
+
+	html = '''\
+<html>
+<head>
+	<title>Sub-merchant checkout page</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+<form id="nonseamless" method="post" name="redirect" action="https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" > 
+		<input type="hidden" id="encRequest" name="encRequest" value=$encReq>
+		<input type="hidden" name="access_code" id="access_code" value=$xscode>
+		<script language='javascript'>document.redirect.submit();</script>
+</form>    
+</body>
+</html>
+'''
+	fin = Template(html).safe_substitute(encReq=encryption,xscode=accessCode)
+			
+	return fin
+
+@app.get('/api/pay')
+def order_payment():
+
+	# accessCode = 'AVPU00EB89BP61UPPB'
+	# workingKey = 'DEDE391379CF9113C0DE2ADF7DA7C235'
+
+	accessCode = 'AVHA69EB15AS94AHSA' 	
+	workingKey = '7D9D1B56365DC282F2F83E8B1C9D4A04'
 
 	p_merchant_id = '123840'
 	p_currency = 'INR'
@@ -77,7 +130,7 @@ def order_payment():
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 </head>
 <body>
-<form id="nonseamless" method="post" name="redirect" action="https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" > 
+<form id="nonseamless" method="post" name="redirect" action="https://secure.ccavenue.com/transaction/transaction.do?command=initiateTransaction" > 
 		<input type="hidden" id="encRequest" name="encRequest" value=$encReq>
 		<input type="hidden" name="access_code" id="access_code" value=$xscode>
 		<script language='javascript'>document.redirect.submit();</script>
