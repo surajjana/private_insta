@@ -25,7 +25,7 @@ def res_test(encResp):
 	data = decResp.split('&')
 
 	mer_name = 'UVCE'
-	mer_email = 'surajjana2@gmail.com'
+	mer_email = 'inspiron2k17@campusuvce.in'
 
 	res = {}
 
