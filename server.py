@@ -20,7 +20,16 @@ db = client.kp
 
 @app.route('/')
 def root():
-	return template('templates/index.tpl')
+	# return template('templates/index.tpl')
+	return static_file('index.html', root='templates/')
+
+@app.route('/privacy-policy')
+def privacy_policy():
+	return static_file('privacy-policy.html', root='templates/')
+
+@app.route('/terms-of-service')
+def terms_of_service():
+	return static_file('terms-of-service.html', root='templates/')
 
 @app.route('/event/<filename>')
 def filename(filename):

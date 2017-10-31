@@ -14,6 +14,8 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
     
 
     <script src="js/wow.min.js"></script>
@@ -35,7 +37,26 @@
                     $('#nav').fadeOut(500);
                 }
             });
+
+            
+              for(var i=1; i<7; i++){
+                console.log('Span ' + i + ' entered...')
+
+                $('s'+i.toString()).css('display', 'block')
+                $('s'+i.toString()).addClass('wow fadeIn')
+                
+                setTimeout(function(){ 
+                  $('s'+i.toString()).addClass('wow fadeOut')
+                  $('s'+i.toString()).css('display', 'none')
+                }, 3000)
+
+                console.log('Span ' + i + ' left...')
+
+              }
+
+            
         });
+
     })(jQuery);
     </script>
 
@@ -90,8 +111,16 @@
         </div>
         <div class="row" style="margin-top: 50px;">
           <div class="col-md-3"></div>
-          <div class="col-md-6 text-center" style="font-size: 25px; font-weight: bold; color: #fff;">
-            "Best curated experiences to connect hobbies with technology"
+          <div class="col-md-6 text-center" style="font-size: 25px; color: #fff;">
+            <!-- "Best curated experiences to connect hobbies with technology" -->
+            Krisp <b>Learn-ups, Hackathons, Technology, Entertainment, Food & Lot's More</b> Experience Curated Just for You!
+            <!-- <span id="s1" style="display: block; font-weight: bold">Learn-ups</span>
+            <span id="s2" style="display: block; font-weight: bold">Hackathons</span>
+            <span id="s3" style="display: block; font-weight: bold">Technology</span>
+            <span id="s4" style="display: block; font-weight: bold">Entertainment</span>
+            <span id="s5" style="display: block; font-weight: bold">Food</span>
+            <span id="s6" style="display: block; font-weight: bold">and Lot's More</span>
+            Experience Curated Just for You! -->
           </div>
           <div class="col-md-3"></div>
         </div>
@@ -100,98 +129,107 @@
       </div>
 
       <section style="padding-top: 25px; padding-bottom: 50px;">
-        <center><h2 style="padding-top: 25px;color: #555;">Upcoming events</h2></center>
+        <center><h2 style="padding-top: 25px;color: #555;">Upcoming Learn-ups</h2></center>
         <hr style="width: 50px; border-width: 5px; border-color: #555;">
         <div class="row">
           <div class="col-md-3 wow fadeIn" data-wow-duration="2s" style="margin-top: 15px;">
             <div class="card" style="width: 100%;">
-              <img src="img/events/data_science.png" alt="Avatar" style="width:100%">
+              <img src="img/events/odh.png" alt="Avatar" style="width:100%">
               <div class="card-container">
                 <h4><b>Introduction to Data Science & all about open data</b></h4> 
                 <p>3rd Nov, 2017 | 2 P.M - 4 P.M</p>
-                <p>Free | <a href="/event/odh-data-science" style="text-decoration: none; color: #fff;"><button class="card-1" style="border: none; background-color: #2e90cc; padding-left: 15px; padding-right: 15px; padding-top: 5px; padding-bottom: 5px;">Know more</button></a></p> 
+                <p><i class="fa fa-map-marker"></i> BMSIT&M, Bangalore</p>
+                <p>Free | <a href="/event/odh-data-science"  target="_blank" style="text-decoration: none; color: #fff;"><button class="card-1" style="border: none; background-color: #2e90cc; padding-left: 15px; padding-right: 15px; padding-top: 5px; padding-bottom: 5px;">Register Now</button></a></p> 
               </div>
             </div>
           </div>
 
           <div class="col-md-3 wow fadeIn" data-wow-duration="2s" style="margin-top: 15px;">
             <div class="card" style="width: 100%;">
-              <img src="img/events/bitcoin.png" alt="Avatar" style="width:100%">
+              <img src="img/events/btc.png" alt="Avatar" style="width:100%">
               <div class="card-container">
                 <!-- <h4><b>Know about Bitcoin & how to handle it</b></h4> --> 
                 <h4><b>Introduction to Bitcoin & other cryptocurrencies</b></h4>
-                <h4> </h4>
                 <p>12th Nov, 2017 | 10 A.M - 12 P.M</p>
-                <p>Free | <a href="#" style="text-decoration: none; color: #fff;"><button class="card-1" style="border: none; background-color: #2e90cc; padding-left: 15px; padding-right: 15px; padding-top: 5px; padding-bottom: 5px;">Know more</button></a></p> 
+                <p><i class="fa fa-map-marker"></i> Bangalore</p>
+                <p>Free | <a href="#" style="text-decoration: none; color: #fff;"><button class="card-1" style="border: none; background-color: #2e90cc; padding-left: 15px; padding-right: 15px; padding-top: 5px; padding-bottom: 5px;">Registrations starting soon</button></a></p> 
               </div>
             </div>
           </div>
         
           <div class="col-md-3 wow fadeIn" data-wow-duration="2s" style="margin-top: 15px;">
             <div class="card" style="width: 100%;">
-              <img src="img/events/python.png" alt="Avatar" style="width:100%">
+              <img src="img/events/py.png" alt="Avatar" style="width:100%">
               <div class="card-container">
                 <h4><b>Introduction to Python Programming</b></h4> 
                 <p>12th Nov, 2017 | 2 P.M - 4 P.M</p>
-                <p>Free | <a href="#" style="text-decoration: none; color: #fff;"><button class="card-1" style="border: none; background-color: #2e90cc; padding-left: 15px; padding-right: 15px; padding-top: 5px; padding-bottom: 5px;">Know more</button></a></p> 
+                <p><i class="fa fa-map-marker"></i> Bangalore</p>
+                <p>Free | <a href="#" style="text-decoration: none; color: #fff;"><button class="card-1" style="border: none; background-color: #2e90cc; padding-left: 15px; padding-right: 15px; padding-top: 5px; padding-bottom: 5px;">Registrations starting soon</button></a></p> 
               </div>
             </div>
           </div>
 
           <div class="col-md-3 wow fadeIn" data-wow-duration="2s" style="margin-top: 15px;">
             <div class="card" style="width: 100%;">
-              <img src="img/events/arduino.png" alt="Avatar" style="width:100%">
+              <img src="img/events/node.png" alt="Avatar" style="width:100%">
+              <div class="card-container">
+                <h4><b>Introduction to Node.js and serverless</b></h4> 
+                <p>Date & time : TBD</p>
+                <p><i class="fa fa-map-marker"></i> Bangalore</p>
+                <p>Free | <a href="#" style="text-decoration: none; color: #fff;"><button class="card-1" style="border: none; background-color: #2e90cc; padding-left: 15px; padding-right: 15px; padding-top: 5px; padding-bottom: 5px;">Registrations starting soon</button></a></p> 
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 wow fadeIn" data-wow-duration="2s" style="margin-top: 15px;">
+            <div class="card" style="width: 100%;">
+              <img src="img/events/arduino-sm.png" alt="Avatar" style="width:100%">
               <div class="card-container">
                 <h4><b>Introduction to Open Hardware & Arduino</b></h4> 
-                <p>To be decided</p>
-                <p>Free | <a href="#" style="text-decoration: none; color: #fff;"><button class="card-1" style="border: none; background-color: #2e90cc; padding-left: 15px; padding-right: 15px; padding-top: 5px; padding-bottom: 5px;">Know more</button></a></p> 
+                <p>Date & time : TBD</p>
+                <p><i class="fa fa-map-marker"></i> Bangalore</p>
+                <p>₹100 | <a href="#" style="text-decoration: none; color: #fff;"><button class="card-1" style="border: none; background-color: #2e90cc; padding-left: 15px; padding-right: 15px; padding-top: 5px; padding-bottom: 5px;">Registrations starting soon</button></a></p> 
               </div>
             </div>
           </div>
 
           <div class="col-md-3 wow fadeIn" data-wow-duration="2s" style="margin-top: 15px;">
             <div class="card" style="width: 100%;">
-              <img src="img/events/aws.png" alt="Avatar" style="width:100%">
+              <img src="img/events/aws-sm.png" alt="Avatar" style="width:100%">
               <div class="card-container">
                 <h4><b>Introduction to Cloud computing with AWS</b></h4> 
-                <p>To be decided</p>
-                <p>Free | <a href="#" style="text-decoration: none; color: #fff;"><button class="card-1" style="border: none; background-color: #2e90cc; padding-left: 15px; padding-right: 15px; padding-top: 5px; padding-bottom: 5px;">Know more</button></a></p> 
+                <p>Date & time : TBD</p>
+                <p><i class="fa fa-map-marker"></i> Bangalore</p>
+                <p>₹100 | <a href="#" style="text-decoration: none; color: #fff;"><button class="card-1" style="border: none; background-color: #2e90cc; padding-left: 15px; padding-right: 15px; padding-top: 5px; padding-bottom: 5px;">Registrations starting soon</button></a></p> 
               </div>
             </div>
           </div>
 
           <div class="col-md-3 wow fadeIn" data-wow-duration="2s" style="margin-top: 15px;">
             <div class="card" style="width: 100%;">
-              <img src="img/events/pwa.png" alt="Avatar" style="width:100%">
+              <img src="img/events/pwa-sm.png" alt="Avatar" style="width:100%">
               <div class="card-container">
                 <h4><b>Introduction to Progressive Web Apps development</b></h4> 
-                <p>To be decided</p>
-                <p>Free | <a href="#" style="text-decoration: none; color: #fff;"><button class="card-1" style="border: none; background-color: #2e90cc; padding-left: 15px; padding-right: 15px; padding-top: 5px; padding-bottom: 5px;">Know more</button></a></p> 
+                <p>Date & time : TBD</p>
+                <p><i class="fa fa-map-marker"></i> Bangalore</p>
+                <p>₹100 | <a href="#" style="text-decoration: none; color: #fff;"><button class="card-1" style="border: none; background-color: #2e90cc; padding-left: 15px; padding-right: 15px; padding-top: 5px; padding-bottom: 5px;">Registrations starting soon</button></a></p> 
               </div>
             </div>
           </div>
 
           <div class="col-md-3 wow fadeIn" data-wow-duration="2s" style="margin-top: 15px;">
             <div class="card" style="width: 100%;">
-              <img src="img/events/ai.png" alt="Avatar" style="width:100%">
+              <img src="img/events/ocl-ai.png" alt="Avatar" style="width:100%">
               <div class="card-container">
                 <h4><b>A practical introduction to Artificial Intelligence</b></h4> 
-                <p>To be decided</p>
-                <p>Free | <a href="#" style="text-decoration: none; color: #fff;"><button class="card-1" style="border: none; background-color: #2e90cc; padding-left: 15px; padding-right: 15px; padding-top: 5px; padding-bottom: 5px;">Know more</button></a></p> 
+                <p>Date & time : TBD</p>
+                <p><i class="fa fa-map-marker"></i> Bangalore</p>
+                <p>₹100 | <a href="#" style="text-decoration: none; color: #fff;"><button class="card-1" style="border: none; background-color: #2e90cc; padding-left: 15px; padding-right: 15px; padding-top: 5px; padding-bottom: 5px;">Registrations starting soon</button></a></p> 
               </div>
             </div>
           </div>
 
-          <div class="col-md-3 wow fadeIn" data-wow-duration="2s" style="margin-top: 15px;">
-            <div class="card" style="width: 100%;">
-              <img src="img/events/nodejs.png" alt="Avatar" style="width:100%">
-              <div class="card-container">
-                <h4><b>Introduction to Node.js</b></h4> 
-                <p>To be decided</p>
-                <p>Free | <a href="#" style="text-decoration: none; color: #fff;"><button class="card-1" style="border: none; background-color: #2e90cc; padding-left: 15px; padding-right: 15px; padding-top: 5px; padding-bottom: 5px;">Know more</button></a></p> 
-              </div>
-            </div>
-          </div>
+          
 
         </div>
       </section>
@@ -241,9 +279,9 @@
       </div>
       <div class="row" style="padding: 15px; background-color: #eee;">
       <div class="col-md-4">Copyrights 2017-2018, Hello Krispypapad LLP</div>
-      <div class="col-md-1">About Us</div>
-      <div class="col-md-2">Privacy Policy</div>
-      <div class="col-md-2">Terms & Conditions</div>
+      <div class="col-md-1"><a href="#">About Us</a></div>
+      <div class="col-md-2"><a href="/privacy-policy" target="_blank">Privacy Policy</a></div>
+      <div class="col-md-2"><a href="/terms-of-service" target="_blank">Terms & Conditions</a></div>
       </div>
     </div>
 
