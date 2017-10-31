@@ -10,13 +10,16 @@ import requests
 import datetime
 import time
 import urlparse
+import hashlib
 import os
+
+from notify import *
 
 app = Bottle(__name__)
 
-# client = MongoClient('mongodb://su:su@52.37.155.102:27017/kp_events')
-client = MongoClient()
-db = client.kp
+client = MongoClient('mongodb://bae:bae@34.228.79.24:27017/bae_chat')
+# # client = MongoClient()
+db = client.bae_chat
 
 @app.route('/')
 def root():
@@ -44,6 +47,32 @@ def event(eid):
 	data = [{'eid':1,'name':'Introduction to Data Science & all about open data','date':'3rd Nov, 2017','time':'2 P.M - 4 P.M','venue':'BMS Institute of Technology & Mgmt., Avalahalli, Bangalore-560064','organiser':'NA','img':'data_science.png','description':'NA','price':'Free','speakers':[{'name':'Suraj Jana','description':'NA','img':'suraj.png'}]},{'eid':2,'name':'Introduction to Bitcoin & other cryptocurrencies','date':'12th Nov, 2017','time':'10 A.M - 12 P.M','venue':'Opencube Labs, Hebbal, Bangalore-560024','organiser':'NA','img':'bitcoin.png','description':'NA','price':'Free','speakers':[{'name':'Suraj Jana','description':'NA','img':'suraj.png'}]},{'eid':3,'name':'Introduction to Python Programming','date':'12th Nov, 2017','time':'2 P.M - 4 P.M','venue':'Opencube Labs, Hebbal, Bangalore-560024','organiser':'NA','img':'python.png','description':'NA','price':'Free','speakers':[{'name':'Suraj Jana','description':'NA','img':'suraj.png'}]},{'eid':4,'name':'Introduction to Open Hardware & Arduino','date':'To be decided','time':'NA','venue':'Opencube Labs, Hebbal, Bangalore-560024','organiser':'NA','img':'arduino.png','description':'NA','price':'Free','speakers':[{'name':'Suraj Jana','description':'NA','img':'suraj.png'}]}]
 
 	return template('templates/event.tpl', data[int(eid) - 1])
+
+@app.post('/reg/free')
+def reg():
+	event_id = request.forms.get('event_id')
+	order_id = hashlib.md5(str(time.time())).hexdigest()
+	name = request.forms.get('name')
+	email = request.forms.get('email')
+	mobile = request.forms.get('mobile')
+
+	data = {'event_id': event_id, 'order_id': order_id, 'name': name, 'email': email, 'mobile': mobile}
+
+	cur = db.kp_event_tickets.insert(data)
+
+	message = 'Dear ' + name + ', \n\n'
+	message += 'Thanks for registration :-) You will receive a confirmation email soon.\n\n'
+	message += 'Participant name : ' + name + '\n'
+	message += 'Order id : ' + order_id + '\n'
+	message += 'Event id : ' + event_id + '\n\n'
+	message += 'Thank you,\n\n'
+	message += 'Regards,\nKrispypapad Team\ninfo@krispypapad.com'
+
+	sendEmail(email, 'Event ticket | ' + event_id, message)
+
+	data = {'event_id': event_id, 'order_id': order_id, 'name': name, 'email': email}
+
+	return template('templates/kp-order-status.tpl', data)
 
 @app.post('/order-status-test')
 def ccavResponseHandler():

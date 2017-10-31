@@ -50,4 +50,20 @@ def sendMerEmail(mer_name, name, order_id, event_id, amount, mer_email):
 	
 	server.quit()
 
-# sendMerEmail('UVCE', 'Suraj Jana', 'TEST_ORDER_1', 'TEST_EVENT_1', '0', 'surajjana2@gmail.com')
+def sendEmail(to_email, subject, message):
+	header  = 'From: Krispypapad<orders@krispypapad.com>\n'
+	header += 'To: ' + to_email + '\n'
+	header += 'Subject: ' + subject + ' \n\n'
+
+	message = header + message
+
+	server = smtplib.SMTP('email-smtp.us-east-1.amazonaws.com', 587)
+	server.starttls()
+	server.login('AKIAIAHQ56UJBIHV75BA','AjTar1h/T5omIVYopVvb+IpvVuVBv+nAiTmKhzoEFcFb')
+	
+	problems = server.sendmail('orders@krispypapad.com', to_email, message)
+	print('Email sent')
+	
+	server.quit()
+
+# sendEmail('surajjana2@gmail.com', 'Testing general email', 'Hey!\nTesting a general email :)\nThank you,\nKrispy Papad Team')
