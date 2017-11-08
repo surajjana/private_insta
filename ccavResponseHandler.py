@@ -20,8 +20,8 @@ def res_test(encResp):
 	'''
 	Please put in the 32 bit alphanumeric key in quotes provided by CCAvenues.
 	'''	 
-	# workingKey = '7D9D1B56365DC282F2F83E8B1C9D4A04'
-	workingKey = 'DEDE391379CF9113C0DE2ADF7DA7C235'
+	workingKey = '7D9D1B56365DC282F2F83E8B1C9D4A04'
+	# workingKey = 'DEDE391379CF9113C0DE2ADF7DA7C235'
 	decResp = decrypt(encResp,workingKey)
 
 	data = decResp.split('&')
