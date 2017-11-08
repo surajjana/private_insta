@@ -66,4 +66,18 @@ def sendEmail(to_email, subject, message):
 	
 	server.quit()
 
-# sendEmail('surajjana2@gmail.com', 'Testing general email', 'Hey!\nTesting a general email :)\nThank you,\nKrispy Papad Team')
+# name = 'Suraj Kumar Jana'
+# order_id = '34627836487283478563478'
+# event_id = 'Test event name'
+# amount = '199'
+
+# message = 'Dear ' + name + ', \n\n'
+# message += 'Thanks for registration :-) Here is your ticket...\n\n'
+# message += 'Participant name : ' + name + '\n'
+# message += 'Order id : ' + order_id + '\n'
+# message += 'Event name : ' + event_id + '\n'
+# message += 'Amount paid : ' + amount + ' INR\n\n'
+# message += 'Thank you,\n\n'
+# message += 'Regards,\nKrispypapad Team\ninfo@krispypapad.com'
+
+# sendEmail('surajjana2@gmail.com','Tickets of Test Event', message)

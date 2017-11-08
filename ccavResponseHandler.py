@@ -85,3 +85,40 @@ def res(encResp):
 	cur = db.kp_uvce_tickets.insert(res)
 
 	return {'name': res['billing_name'], 'order_id': res['order_id'], 'event_id': res['merchant_param1'], 'amount': res['mer_amount'], 'order_status': res['order_status']}
+
+def res_kp(encResp):
+	
+	# workingKey = '7D9D1B56365DC282F2F83E8B1C9D4A04'
+	workingKey = 'DEDE391379CF9113C0DE2ADF7DA7C235'
+	decResp = decrypt(encResp,workingKey)
+
+	data = decResp.split('&')
+
+	res = {}
+
+	for x in data:
+		d = x.split('=')
+		res.update({d[0]: d[1]})
+
+	if res['order_status'] == 'Success':
+		order_id = res['order_id']
+		event_id = str(res['merchant_param1'])
+		name = res['billing_name']
+		email = res['billing_email']
+		amount = res['mer_amount']
+
+		message = 'Dear ' + name + ', \n\n'
+		message += 'Thanks for registration :-) Here is your ticket...\n\n'
+		message += 'Participant name : ' + name + '\n'
+		message += 'Order id : ' + order_id + '\n'
+		message += 'Event name : ' + event_id + '\n'
+		message += 'Amount paid : ₹' + amount + '\n\n'
+		message += 'Thank you,\n\n'
+		message += 'Regards,\nKrispypapad Team\ninfo@krispypapad.com'
+		
+		sendEmail(email, 'Tickets for ' + event_id, message)
+		# sendMerEmail(mer_name, name, order_id, event_id, amount, mer_email)
+		
+	cur = db.kp_paid_tickets.insert(res)
+
+	return {'name': res['billing_name'], 'order_id': res['order_id'], 'event_id': res['merchant_param1'], 'amount': res['mer_amount'], 'order_status': res['order_status']}

@@ -188,6 +188,62 @@ def order_payment():
 			
 	return fin
 
+@app.post('/order-info')
+def ccavResponseHandler():
+    data = res_kp(request.forms.get('encResp'))
+    # data = json.loads(plainText)
+    #return data
+
+    return template('templates/order-status.tpl', data)
+
+@app.post('/api/pay/kp')
+def order_payment():
+
+	accessCode = 'AVPU00EB89BP61UPPB'
+	workingKey = 'DEDE391379CF9113C0DE2ADF7DA7C235'
+
+	# accessCode = 'AVHA69EB15AS94AHSA' 	
+	# workingKey = '7D9D1B56365DC282F2F83E8B1C9D4A04'
+
+	p_merchant_id = '123840'
+	p_currency = 'INR'
+	p_redirect_url = 'https://www.krispypapad.com/order-info'
+	p_cancel_url = 'https://www.krispypapad.com/order-info'
+	p_language = 'EN'
+
+	# apikey = request.forms.get('apikey')
+
+	p_order_id = hashlib.md5(str(time.time())).hexdigest()
+
+	p_amount = request.forms.get('amount')
+	p_billing_name = request.forms.get('name')
+	p_billing_tel = request.forms.get('mobile')
+	p_billing_email = request.forms.get('email')
+
+	event_id = request.forms.get('event_id')
+
+	merchant_data = 'merchant_id='+p_merchant_id+'&'+'order_id='+p_order_id + '&' + "currency=" + p_currency + '&' + 'amount=' + p_amount+'&'+'redirect_url='+p_redirect_url+'&'+'cancel_url='+p_cancel_url+'&'+'language='+p_language+'&'+'billing_name='+p_billing_name+'&'+'billing_tel='+p_billing_tel+'&'+'billing_email='+p_billing_email+'&'+'merchant_param1='+event_id+'&'
+		
+	encryption = encrypt(merchant_data,workingKey)
+
+	html = '''\
+<html>
+<head>
+	<title>Sub-merchant checkout page</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+<form id="nonseamless" method="post" name="redirect" action="https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" > 
+		<input type="hidden" id="encRequest" name="encRequest" value=$encReq>
+		<input type="hidden" name="access_code" id="access_code" value=$xscode>
+		<script language='javascript'>document.redirect.submit();</script>
+</form>    
+</body>
+</html>
+'''
+	fin = Template(html).safe_substitute(encReq=encryption,xscode=accessCode)
+			
+	return fin
 
 # Static Routes
 @app.route('/<filename:re:.*\.js>')

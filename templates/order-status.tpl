@@ -36,7 +36,7 @@
           <div class="col-md-4 text-center" style="margin-top: 15px;">
             <h4><b>Participant name : </b>{{name}}</h4>
             <h4><b>Order id : </b>{{order_id}}</h4>
-            <h4><b>Event id : </b>{{event_id}}</h4>
+            <h4><b>Event name : </b>{{event_id}}</h4>
             <h4><b>Amount paid : </b>{{amount}}</h4>
             <h4><b>Payment status : </b>{{order_status}}</h4>
             <h4>Check you email for the ticket :-)</h4>
