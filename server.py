@@ -3,7 +3,7 @@ from pymongo import MongoClient
 from bson.json_util import dumps
 from string import Template
 from ccavutil import encrypt,decrypt
-from ccavResponseHandler import res, res_test
+from ccavResponseHandler import *
 import json
 import pymongo
 import requests
