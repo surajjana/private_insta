@@ -213,7 +213,7 @@ def order_payment_kp():
 
 	# apikey = request.forms.get('apikey')
 
-	p_order_id = hashlib.md5(str(time.time())).digest().encode('base64').strip()
+	p_order_id = hashlib.md5(str(time.time())).digest().encode('base64').strip().replace(' ','')
 
 	p_amount = request.forms.get('amount')
 	p_billing_name = request.forms.get('name')
