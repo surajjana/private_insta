@@ -112,7 +112,7 @@ def res_kp(encResp):
 		message += 'Participant name : ' + name + '\n'
 		message += 'Order id : ' + order_id + '\n'
 		message += 'Event name : ' + event_id + '\n'
-		message += 'Amount paid : ₹' + amount + '\n\n'
+		message += 'Amount paid : ' + amount + ' INR\n\n'
 		message += 'Thank you,\n\n'
 		message += 'Regards,\nKrispypapad Team\ninfo@krispypapad.com'
 		
