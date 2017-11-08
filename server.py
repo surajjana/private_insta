@@ -199,11 +199,11 @@ def ccavResponseHandler():
 @app.post('/api/pay/kp')
 def order_payment():
 
-	accessCode = 'AVPU00EB89BP61UPPB'
-	workingKey = 'DEDE391379CF9113C0DE2ADF7DA7C235'
+	# accessCode = 'AVPU00EB89BP61UPPB'
+	# workingKey = 'DEDE391379CF9113C0DE2ADF7DA7C235'
 
-	# accessCode = 'AVHA69EB15AS94AHSA' 	
-	# workingKey = '7D9D1B56365DC282F2F83E8B1C9D4A04'
+	accessCode = 'AVHA69EB15AS94AHSA' 	
+	workingKey = '7D9D1B56365DC282F2F83E8B1C9D4A04'
 
 	p_merchant_id = '123840'
 	p_currency = 'INR'
@@ -233,7 +233,7 @@ def order_payment():
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 </head>
 <body>
-<form id="nonseamless" method="post" name="redirect" action="https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" > 
+<form id="nonseamless" method="post" name="redirect" action="https://secure.ccavenue.com/transaction/transaction.do?command=initiateTransaction" > 
 		<input type="hidden" id="encRequest" name="encRequest" value=$encReq>
 		<input type="hidden" name="access_code" id="access_code" value=$xscode>
 		<script language='javascript'>document.redirect.submit();</script>
