@@ -6,7 +6,7 @@ from pymongo import MongoClient
 from bson.json_util import dumps
 import json
 import pymongo
-from notify import sendClientEmail, sendMerEmail
+from notify import *
 
 
 client = MongoClient('mongodb://bae:bae@34.228.79.24:27017/bae_chat')
