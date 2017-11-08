@@ -189,7 +189,7 @@ def order_payment():
 	return fin
 
 @app.post('/order-info')
-def ccavResponseHandler():
+def ccavResponseHandlerKP():
     data = res_kp(request.forms.get('encResp'))
     # data = json.loads(plainText)
     #return data
@@ -197,13 +197,13 @@ def ccavResponseHandler():
     return template('templates/order-status.tpl', data)
 
 @app.post('/api/pay/kp')
-def order_payment():
+def order_payment_kp():
 
-	# accessCode = 'AVPU00EB89BP61UPPB'
-	# workingKey = 'DEDE391379CF9113C0DE2ADF7DA7C235'
+	accessCode = 'AVPU00EB89BP61UPPB'
+	workingKey = 'DEDE391379CF9113C0DE2ADF7DA7C235'
 
-	accessCode = 'AVHA69EB15AS94AHSA' 	
-	workingKey = '7D9D1B56365DC282F2F83E8B1C9D4A04'
+	# accessCode = 'AVHA69EB15AS94AHSA' 	
+	# workingKey = '7D9D1B56365DC282F2F83E8B1C9D4A04'
 
 	p_merchant_id = '123840'
 	p_currency = 'INR'
@@ -213,7 +213,7 @@ def order_payment():
 
 	# apikey = request.forms.get('apikey')
 
-	p_order_id = hashlib.md5(str(time.time())).hexdigest()
+	p_order_id = hashlib.md5(str(time.time())).digest().encode('base64').strip()
 
 	p_amount = request.forms.get('amount')
 	p_billing_name = request.forms.get('name')
@@ -233,7 +233,7 @@ def order_payment():
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 </head>
 <body>
-<form id="nonseamless" method="post" name="redirect" action="https://secure.ccavenue.com/transaction/transaction.do?command=initiateTransaction" > 
+<form id="nonseamless" method="post" name="redirect" action="https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction" > 
 		<input type="hidden" id="encRequest" name="encRequest" value=$encReq>
 		<input type="hidden" name="access_code" id="access_code" value=$xscode>
 		<script language='javascript'>document.redirect.submit();</script>
