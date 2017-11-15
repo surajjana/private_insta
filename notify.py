@@ -86,15 +86,3 @@ def promoEmail(email):
 	print('Email sent')
 	
 	server.quit()
-
-# email_list = "kk.bindumalini@gmail.com,javednisar.shaikh@gmail.com,er.ektaagrawal@gmail.com,vtu5107@veltechuniv.edu.in,rnramkumar@gmail.com"
-# email_list = email_list.split(',')
-
-# print len(email_list)
-
-# counter = 0
-
-# for x in email_list:
-# 	promoEmail(x)
-# 	print counter
-# 	counter = counter + 1
