@@ -38,6 +38,10 @@ def terms_of_service():
 def filename(filename):
 	return static_file(filename + '.html', root='templates/')
 
+@app.route('/.well-known/acme-challenge/<filename>')
+def ssl_files(filename):
+	return static_file(filename, root='templates/')
+
 @app.route('/e/<eid>')
 def event(eid):
 	# cur = db.event.find({'eid': int(eid)})
