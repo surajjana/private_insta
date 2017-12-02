@@ -12,13 +12,18 @@ SENDER = "Open Data Hack <hi@opendatahack.org>"
 AWS_REGION = "us-east-1"
 
 
-SUBJECT = "[Certificate] Introduction to Open Data & Data Science Learn-up by Open Data Hack on 19th November, 2017"
+SUBJECT = "[TEST] Test 1"
 
-def send_cert_attach(email_id, name, file_name):
+def send_cert_attach(email_id, name):
 
     RECIPIENT = email_id
 
-    ATTACHMENT = "./odh_cert/" + file_name + ".pdf"
+    # ATTACHMENT = "./odh_cert/" + file_name + ".pdf"
+
+    ATTACHMENT1 = "./test_attach/intro.pdf"
+    ATTACHMENT2 = "./test_attach/ocl.pdf"
+    ATTACHMENT3 = "./test_attach/cdp.pdf"
+
 
     BODY_TEXT = "Hello " + name + "!,\r\nThank you for attending Introduction to Open Data & Data Science Learn-up by Open Data Hack on 19th November, 2017. Please find attached your certificate.\n\nFollow us on Twitter(twitter.com/_opendatahack), like us on Facebook(fb.com/opendatahack) to get updated about our future events.\n\nThank you,\n\nRegards,\nSuraj Kumar Jana\nGlobal community coordinator\nhttps://www.opendatahack.org"
 
@@ -57,13 +62,24 @@ def send_cert_attach(email_id, name, file_name):
     msg_body.attach(textpart)
     msg_body.attach(htmlpart)
 
-    att = MIMEApplication(open(ATTACHMENT, 'rb').read())
+    att1 = MIMEApplication(open(ATTACHMENT1, 'rb').read())
 
-    att.add_header('Content-Disposition','attachment',filename=os.path.basename(ATTACHMENT))
+    att1.add_header('Content-Disposition','attachment',filename=os.path.basename(ATTACHMENT1))
+
+    att2 = MIMEApplication(open(ATTACHMENT2, 'rb').read())
+
+    att2.add_header('Content-Disposition','attachment',filename=os.path.basename(ATTACHMENT2))
+
+    att3 = MIMEApplication(open(ATTACHMENT3, 'rb').read())
+
+    att3.add_header('Content-Disposition','attachment',filename=os.path.basename(ATTACHMENT3))
 
     msg.attach(msg_body)
 
-    msg.attach(att)
+    msg.attach(att1)
+    msg.attach(att2)
+    msg.attach(att3)
+
     try:
         response = client.send_raw_email(
             Source=SENDER,
@@ -81,10 +97,12 @@ def send_cert_attach(email_id, name, file_name):
         print(response['ResponseMetadata']['RequestId'])
 
 
-names = ['Ali Raza','Abu Bakr','VR Krishna Prasad Sajja','Somnath Mahato','Nithyashree K','Salman Shariff','Rohith Kumar P']
-email_ids = ['sanadi.raza@gmail.com','abuhaider2011@gmail.com','rankyp@gmail.com','somnathmahato723@gmail.com','nithyavishwakarma.gkm@gmail.com','salmanshariff.salman@gmail.com','rohithkumar31@gmail.com']
-file_names = ['DS191117001','DS191117002','DS191117003','DS191117004','DS191117005','DS191117006','DS191117007']
+# names = ['Ali Raza','Abu Bakr','VR Krishna Prasad Sajja','Somnath Mahato','Nithyashree K','Salman Shariff','Rohith Kumar P']
+# email_ids = ['sanadi.raza@gmail.com','abuhaider2011@gmail.com','rankyp@gmail.com','somnathmahato723@gmail.com','nithyavishwakarma.gkm@gmail.com','salmanshariff.salman@gmail.com','rohithkumar31@gmail.com']
+# file_names = ['DS191117001','DS191117002','DS191117003','DS191117004','DS191117005','DS191117006','DS191117007']
 
-for i in range(0, len(names)):
-    print i+1
-    send_cert_attach(email_ids[i], names[i], file_names[i])
+# for i in range(0, len(names)):
+#     print i+1
+#     send_cert_attach(email_ids[i], names[i], file_names[i])
+
+send_cert_attach('surajjana2@gmail.com', 'Suraj')
