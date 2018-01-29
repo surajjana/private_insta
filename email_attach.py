@@ -6,13 +6,13 @@ from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
 
 
-SENDER = "Opencube Labs <hello@ocl.space>"
+SENDER = "Opencube Labs <suraj@ocl.space>"
 
 
 AWS_REGION = "us-east-1"
 
 
-SUBJECT = "[CERTIFICATE] Arduino : Hands-on Workshop by Opencube Labs on 3rd December, 2017"
+SUBJECT = "[CERTIFICATE] Arduino:Hands-on Workshop by Opencube Labs on 28th January, 2018"
 
 def send_cert_attach(email_id, name, file_name):
 
@@ -21,14 +21,16 @@ def send_cert_attach(email_id, name, file_name):
     ATTACHMENT = "./ocl_cert/" + file_name + ".pdf"
 
 
-    BODY_TEXT = "Hello " + name + "!,\r\nThank you for attending Arduino : Hands-on Workshop by Opencube Labs on 3rd December, 2017. Please find attached your certificate.\n\nFollow us on Twitter(twitter.com/opencubelabs), like us on Facebook(fb.com/opencubelabs) to get updated about our future events.\n\nThank you,\n\nRegards,\nSuraj Kumar Jana\nFounder & CEO, Opencube Labs\nhttp://ocl.space"
+    BODY_TEXT = "Hello " + name + "!,\r\nThank you for attending Arduino:Hands-on Workshop by Opencube Labs on 28th January, 2018. Please find attached your certificate.\n\nPresentation URL : https://www.slideshare.net/SurajKumarJana/arduino-handson-workshop\n\nFollow us on Twitter(twitter.com/opencubelabs), like us on Facebook(fb.com/opencubelabs) to get updated about our future events.\n\nThank you,\n\nRegards,\nSuraj Kumar Jana\nFounder & CEO, Opencube Labs\nhttp://ocl.space"
 
     BODY_HTML = """\
     <html>
     <head></head>
     <body>
     <h1>Hello """ + name + """!</h1>
-    <p>Thank you for attending Arduino : Hands-on Workshop by Opencube Labs on 3rd December, 2017. Please find attached your certificate.</p>
+    <p>Thank you for attending Arduino:Hands-on Workshop by Opencube Labs on 28th January, 2018. Please find attached your certificate.</p>
+    <p>Presentation URL : https://www.slideshare.net/SurajKumarJana/arduino-handson-workshop</p>
+    
     <p>Follow us on Twitter(twitter.com/opencubelabs), like us on Facebook(fb.com/opencubelabs) to get updated about our future events.</p>
     <br>
     <p>Thank you,</p>
@@ -85,13 +87,18 @@ def send_cert_attach(email_id, name, file_name):
         print(response['ResponseMetadata']['RequestId'])
 
 
-names = ['Abdul Rehman Iftekhar','Mohit Kumar','Preeti N Kini','Vinutha MR','Manjunath .P','Amruth Raj S.A','Deekshith Gowda H.P']
-email_ids = ['abdria26@gmail.com','m_kumar@students.iitmandi.ac.in','preetikini653@gmail.com','vinutharpkv@gmail.com','manjup93@gmail.com','amruthrajsagara@yahoo.com','deekshith2211@gmail.com']
-file_names = ['AR031217001', 'AR031217002', 'AR031217003', 'AR031217004', 'AR031217005', 'AR031217006', 'AR031217007']
+import xlrd
 
-for i in range(0, len(names)):
+book = xlrd.open_workbook('cert-data.xls')
+sheet = book.sheet_by_index(0)
+
+# names = ['Rahul Upadhyay','Md. Danish','Revanth Kumar','Venkatesh Sharma','Harshith SV','Sumit Ranjan']
+# email_ids = ['rku1327@gmail.com','mddanishazmi152@gmail.com','revanthkumar271@gmail.com','venkateshsharma13@gmail.com','hm990000@gmail.com','ranjan.sumit79@gmail.com']
+# file_names = ['MLPY140118001', 'MLPY140118002', 'MLPY140118003', 'MLPY140118004', 'MLPY140118005', 'MLPY140118006']
+
+for i in range(0, sheet.nrows):
     print i+1
-    send_cert_attach(email_ids[i], names[i], file_names[i])
+    send_cert_attach(str(sheet.cell(i,1).value), str(sheet.cell(i,0).value), str(sheet.cell(i,2).value))
 
 
 # send_cert_attach('surajjana2@gmail.com', 'Suraj', 'AR031217001')
