@@ -12,7 +12,7 @@ SENDER = "Opencube Labs <suraj@ocl.space>"
 AWS_REGION = "us-east-1"
 
 
-SUBJECT = "[CERTIFICATE] Data Science Workshop by Open Data Hack & Opencube Labs on 11th February, 2018"
+SUBJECT = "[CERTIFICATE] Machine Learning with Python Workshop by Opencube Labs on 10th December, 2017"
 
 def send_cert_attach(email_id, name, file_name):
 
@@ -21,15 +21,15 @@ def send_cert_attach(email_id, name, file_name):
     ATTACHMENT = "./ocl_cert/" + file_name + ".pdf"
 
 
-    BODY_TEXT = "Hello " + name + "!,\r\nThank you for attending Data Science Workshop by Open Data Hack & Opencube Labs on 11th February, 2018. Please find attached your certificate.\n\nPresentation URL : https://www.slideshare.net/SurajKumarJana/introduction-to-open-data-and-data-science\n\nCode Notebooks : https://github.com/opencubelabs/notebooks\n\nFollow us on Twitter(twitter.com/opencubelabs), like us on Facebook(fb.com/opencubelabs) to get updated about our future events.\n\nThank you,\n\nRegards,\nSuraj Kumar Jana\nFounder & CEO, Opencube Labs\nhttp://ocl.space"
+    BODY_TEXT = "Hello " + name + "!,\r\nThank you for attending Machine Learning with Python Workshop by Opencube Labs on 10th December, 2017. Please find attached your certificate.\n\nPresentation URL : https://www.slideshare.net/SurajKumarJana/machine-learning-using-python\n\nCode Notebooks : https://github.com/opencubelabs/notebooks\n\nFollow us on Twitter(twitter.com/opencubelabs), like us on Facebook(fb.com/opencubelabs) to get updated about our future events.\n\nThank you,\n\nRegards,\nSuraj Kumar Jana\nFounder & CEO, Opencube Labs\nhttp://ocl.space"
 
     BODY_HTML = """\
     <html>
     <head></head>
     <body>
     <h1>Hello """ + name + """!</h1>
-    <p>Thank you for attending Data Science Workshop by Open Data Hack & Opencube Labs on 11th February, 2018. Please find attached your certificate.</p>
-    <p>Presentation URL : https://www.slideshare.net/SurajKumarJana/introduction-to-open-data-and-data-science</p>
+    <p>Thank you for attending Machine Learning with Python Workshop by Opencube Labs on 10th December, 2017. Please find attached your certificate.</p>
+    <p>Presentation URL : https://www.slideshare.net/SurajKumarJana/machine-learning-using-python</p>
     <p>Code Notebooks : https://github.com/opencubelabs/notebooks</p>
     
     <p>Follow us on Twitter(twitter.com/opencubelabs), like us on Facebook(fb.com/opencubelabs) to get updated about our future events.</p>
