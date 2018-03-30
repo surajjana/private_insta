@@ -68,100 +68,6 @@
     })(jQuery);
     </script>
 
-    <script type="text/javascript">
-      //Template  engine
-      (function(){
-        var cache = {};
-        this.tmpl = function tmpl(str, data){
-          var fn = !/\W/.test(str) ?
-            cache[str] = cache[str] ||
-              tmpl(document.getElementById(str).innerHTML) :
-            new Function("obj",
-              "var p=[],print=function(){p.push.apply(p,arguments);};" +
-              "with(obj){p.push('" +
-              str
-                .replace(/[\r\t\n]/g, " ")
-                .split("<%").join("\t")
-                .replace(/((^|%>)[^\t]*)'/g, "$1\r")
-                .replace(/\t=(.*?)%>/g, "',$1,'")
-                .split("\t").join("');")
-                .split("%>").join("p.push('")
-                .split("\r").join("\\'")
-            + "');}return p.join('');");
-          return data ? fn( data ) : fn;
-        };
-      })();
-
-      //Routes engine
-      (function () {
-        var routes = {};
-        var events = [];
-        var el = null;
-        var ctx = {
-          on: function (selector, evt, handler) {
-            events.push([selector, evt, handler]);
-          },
-          refresh: function (listeners) {
-            listeners.forEach(function (fn) { fn(); });
-          }
-        };
-        function route (path, templateId, controller) {
-          if (typeof templateId === 'function') {
-            controller = templateId;
-            templateId = null;
-          }
-          var listeners = [];
-          Object.defineProperty(controller.prototype, '$on', {value: ctx.on});
-          Object.defineProperty(controller.prototype, '$refresh', {value: ctx.refresh.bind(undefined, listeners)});
-          routes[path] = {templateId: templateId, controller: controller, onRefresh: listeners.push.bind(listeners)};
-        }
-        function forEachEventElement(fnName) {
-          for (var i = 0, len = events.length; i < len; i++) {
-            var els = el.querySelectorAll(events[i][0]);
-            for (var j = 0, elsLen = els.length; j < elsLen; j++) {
-              els[j][fnName].apply(els[j], events[i].slice(1));
-            }
-          }
-        }
-        function addEventListeners() {
-          forEachEventElement('addEventListener');
-        }
-        function removeEventListeners() {
-          forEachEventElement('removeEventListener');
-        }
-        function router () {
-          el = el || document.getElementById('view');
-          removeEventListeners();
-          events = [];
-          var url = location.hash.slice(1) || '/';
-          var route = routes[url] || routes['*'];
-          if (route && route.controller) {
-            var ctrl = new route.controller();
-            if (!el || !route.templateId) {
-              return;
-            }
-            route.onRefresh(function () {
-              removeEventListeners();
-              el.innerHTML = tmpl(route.templateId, ctrl);
-              addEventListeners();
-            });
-            ctrl.$refresh();
-          }
-        }
-        this.addEventListener('hashchange', router);
-        this.addEventListener('load', router);
-        this.route = route;
-      })();
-    </script>
-
-    <script type="text/html" id="home">
-      <h1>The feeds</h1>
-    </script>
-
-    <script type="text/html" id="template1">
-      <h1>Template</h1>
-    </script>
-
     
   </head>
   <body style="background-color: #f5f5f5;">
@@ -173,7 +79,7 @@
         <div class="col-md-4"></div>
         <div class="col-md-4 text-center" style="padding-top: 12px; color: #fff;">
           <!-- <a href="#" style="text-decoration: none;"><h4 style="color: white; padding: 5px;">The Logo</h4></a> -->
-          <p class="" style="float: left; font-size: 25px; margin: 0px;">Logo</p>
+          <i class="fa fa-arrow-left" style="float: left; font-size: 25px;"></i>
           <i class="fa fa-ellipsis-v" style="float: right; font-size: 25px;"></i>
         </div>
         <div class="col-md-4"></div>
@@ -185,31 +91,15 @@
         
         <div class="row">
           <div class="col-md-3" style="margin-top: 15px; background-color: #ffffff; padding: 0px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
-            <div class="" style="height: 80px; width: 100%; padding-top: 15px; padding-left: 15px; padding-right: 15px;">
-              <img src="img/suraj.png" style="width: 50px; float: left;">
+            <div class="" style="height: 105px; width: 100%; padding-top: 15px; padding-left: 15px; padding-right: 15px;">
+              <img src="img/suraj.png" style="width: 75px; float: left;">
               <div style="margin:0 auto; display:inline-block; padding-left: 15px; padding-top: 5px;">
-                <p style="margin: 0px;"><b>Teacher Name</b></p>
-                <p style="margin: 0px;"><i>Class name</i></p>
+                <p style="margin: 0px;"><b>Kid's Name</b></p>
+                <p style="margin: 0px;"><i>Delhi Public School, Class name</i></p>
+                <p style="margin: 0px;">Kid's family</p>
               </div>
-              <p style="float: right;">15 mins ago</p>
               
-            </div>
-            <div class="" style="width: 100%; padding-left: 15px; padding-right: 15px;">
-              <p>Some text goes here about the current activity that kids were part of...</p>
-            </div>
-            <div class="" style="width: 100%;">
-              <img src="img/kids.jpg" style="width: 100%; border-radius: 0 0 0 0;">
-            </div>
-            <div class="" style="width: 100%; padding-left: 15px; padding-right: 15px; padding-top: 10px; padding-bottom: 10px;">
-              <img src="img/suraj.png" style="width: 25px;">
-              <img src="img/suraj.png" style="width: 25px;">
-              <img src="img/suraj.png" style="width: 25px;">
-              <img src="img/suraj.png" style="width: 25px;">
-              <img src="img/suraj.png" style="width: 25px;">
-            </div>
-            <div class="" style="height: 40px; width: 100%; padding-left: 15px; padding-right: 15px; padding-bottom: 15px;">
-              <h5 style="float: left;">Activity Name</h5>
-              <i class="fa fa-share-alt" style="float: right; font-size: 25px;"></i>
+              
             </div>
           </div>
 
@@ -241,6 +131,8 @@
               <i class="fa fa-share-alt" style="float: right; font-size: 25px;"></i>
             </div>
           </div>
+
+        
 
         </div>
 
@@ -256,23 +148,6 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-
-    <script>
-      route('/', 'home', function () {});
-      route('/page1', 'template1', function () {
-        this.greeting = 'Hello world!';
-        this.moreText = 'Bacon ipsum...';
-        this.counter = 0;
-        this.$on('.my-button', 'click', function () {
-          this.counter += 1;
-          this.$refresh();
-        }.bind(this));
-      });
-      route('/page2', 'template2', function () {
-        this.heading = 'I\'m page two!';
-      });
-      route('*', 'error404', function () {});
-    </script>
 
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
