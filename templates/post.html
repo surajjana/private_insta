@@ -64,15 +64,22 @@
     <script type="text/javascript">
     (function($) {          
         $(document).ready(function(){                    
-            /*$(window).scroll(function(){                          
-                if ($(this).scrollTop() > 300) {
-                    $('#nav').css('display', 'block');
-                    $('#nav').fadeIn(500);
-                } else {
-                    $('#nav').css('display', 'none');
-                    $('#nav').fadeOut(500);
+            function readURL(input) {
+
+              if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                  $('#media').attr('src', e.target.result);
                 }
-            });*/
+
+                reader.readAsDataURL(input.files[0]);
+              }
+            }
+
+            $("#file-input").change(function() {
+              readURL(this);
+            });
 
             
             
@@ -117,7 +124,7 @@
               <p contenteditable="true">Some text goes here about the current activity that kids were part of...</p>
             </div>
             <div class="" style="width: 100%; padding-bottom: 15px;">
-              <img src="img/kids.jpg" style="width: 100%; border-radius: 0 0 0 0;">
+              <img id="media" src="img/kids.jpg" style="width: 100%; border-radius: 0 0 0 0;">
             </div>
             
               <!-- <input type="file" accept="image/*" capture="camera" /> -->
