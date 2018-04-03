@@ -66,24 +66,45 @@
         });
 
     })(jQuery);
+
+    function toggle_menu() {
+        var x = document.getElementById("menu-panel");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
     </script>
 
     
   </head>
   <body style="background-color: #f5f5f5;">
     
-    <div class="container-fluid">
+    <div class="container-fluid" style="position: relative;">
       
-      <div class="row card-1" id="nav" style="display: block; height: 50px; background-color: #6A1B9A; position: fixed; top: 0; left: 15px; right: 0; z-index: 999; width: 100%;">
+      <div class="row card-1" id="nav" style="display: block; height: 50px; background-color: #6A1B9A; position: fixed; top: 0; left: 15px; right: 0; z-index: 1; width: 100%;">
 
         <div class="col-md-4"></div>
         <div class="col-md-4 text-center" style="padding-top: 12px; color: #fff;">
           <!-- <a href="#" style="text-decoration: none;"><h4 style="color: white; padding: 5px;">The Logo</h4></a> -->
           <i class="fa fa-arrow-left" style="float: left; font-size: 25px;"></i>
-          <i class="fa fa-ellipsis-v" style="float: right; font-size: 25px;"></i>
+          <div style="float: right;">
+            <i class="fa fa-plus" style="font-size: 25px; margin-right: 15px;"></i>
+            <i class="fa fa-ellipsis-v" style="font-size: 25px;" id="menu" onclick="toggle_menu();"></i>
+          </div>
+          
         </div>
         <div class="col-md-4"></div>
 
+      </div>
+
+      <div id="menu-panel" style="position: fixed; top: 50px; right: 0px; float: right; z-index: 1; background-color: #fff; padding: 15px;box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); display: none;">
+        <a href="#/post">Kid's Profile</a>
+        <p>Settings</p>
+        <p>About School</p>
+        <p>About Us</p>
+        <p>Logout</p>
       </div>
       
 
@@ -100,6 +121,35 @@
               </div>
               
               
+            </div>
+          </div>
+
+          <div class="col-md-3" style="margin-top: 15px; background-color: #ffffff; padding: 0px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
+            <div class="" style="height: 80px; width: 100%; padding-top: 15px; padding-left: 15px; padding-right: 15px;">
+              <img src="img/suraj.png" style="width: 50px; float: left;">
+              <div style="margin:0 auto; display:inline-block; padding-left: 15px; padding-top: 5px;">
+                <p style="margin: 0px;"><b>Teacher Name</b></p>
+                <p style="margin: 0px;"><i>Class name</i></p>
+              </div>
+              <p style="float: right;">15 mins ago</p>
+              
+            </div>
+            <div class="" style="width: 100%; padding-left: 15px; padding-right: 15px;">
+              <p>Some text goes here about the current activity that kids were part of...</p>
+            </div>
+            <div class="" style="width: 100%;">
+              <img src="img/kids.jpg" style="width: 100%; border-radius: 0 0 0 0;">
+            </div>
+            <div class="" style="width: 100%; padding-left: 15px; padding-right: 15px; padding-top: 10px; padding-bottom: 10px;">
+              <img src="img/suraj.png" style="width: 25px;">
+              <img src="img/suraj.png" style="width: 25px;">
+              <img src="img/suraj.png" style="width: 25px;">
+              <img src="img/suraj.png" style="width: 25px;">
+              <img src="img/suraj.png" style="width: 25px;">
+            </div>
+            <div class="" style="height: 40px; width: 100%; padding-left: 15px; padding-right: 15px; padding-bottom: 15px;">
+              <h5 style="float: left;">Activity Name</h5>
+              <i class="fa fa-share-alt" style="float: right; font-size: 25px;"></i>
             </div>
           </div>
 

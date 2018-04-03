@@ -55,6 +55,10 @@ def images(filename):
 def fonts(filename):
     return static_file(filename, root='static')
 
+@app.route('/<filename:re:.*\.html>')
+def javascripts(filename):
+    return static_file(filename, root='static')
+
 @app.hook('after_request')
 def enable_cors():
 	response.headers['Access-Control-Allow-Origin'] = '*'
